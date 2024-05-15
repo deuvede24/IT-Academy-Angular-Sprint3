@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "test": "jest",
-    "test:watch": "jest --watchAll --verbose=false"
+    "test:watch": "jest --watch"
   },
+  
   "devDependencies": {
     "jest": "^29.7.0",
     "jest-html-reporter": "^3.7.0",
