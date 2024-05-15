@@ -18,36 +18,53 @@ function getMoviesFromDirector(array, director) {
 
 // Exercise 3: Calculate the average of the films of a given director.
 function moviesAverageOfDirector(array, director) {
+  /* let moviesFromDirector = array.filter((movie) => movie.director === director);
+   let totalScore = moviesFromDirector.reduce((total, movie) => total + movie.score, 0);
+   let result = (totalScore / moviesFromDirector.length).toFixed(2);
+   return parseFloat(result);*/
   let moviesFromDirector = getMoviesFromDirector(array, director);
-  const average = Number(
-    (
-      moviesFromDirector.reduce((total, movie) => total + movie.score, 0) /
-      moviesFromDirector.lenght
-    ).toFixed(2)
-  );
-  return average;
+  let totalScore = Number(moviesFromDirector.reduce((total, movie) => total + movie.score, 0));
+  let result = totalScore / moviesFromDirector.length.toFixed(2)
+  console.log('EXERCICE 3 ->', result);
+  return parseFloat(result);
 }
 
 // Exercise 4:  Alphabetic order by title
 function orderAlphabetically(array) {
- 
-    const sortedMovies = array.map(movie => movie.title).sort().slice(0, 20);
-    return sortedMovies
-  
-  
+  const sortedMovies = array
+    .map((movie) => movie.title)
+    .sort((a, b)=> a.localeCompare(b)) //LocalCompare garantiza el orden alfabéitco sensible a mayúsuclas-minúsculas y caracteres especiales.
+      .slice(0, 20); //las primeras 20
+      console.log('EXERCICE 4 ->', sortedMovies);
+  return sortedMovies;
 }
 
 // Exercise 5: Order by year, ascending
-function orderByYear() {}
+function orderByYear(array) {
+    // Utilizamos sort() para ordenar las películas por año y luwgo por tittle
+    const copyArray = [...array]
+    const sortedYearTitle = copyArray.sort((a, b) => {
+      if (a.year !== b.year) {  // Comparamos los años
+        return a.year - b.year; // Orden ascendente por año
+      } else {  // Si las películas tienen el mismo año, las ordenamos por tittle
+        return a.title.localeCompare(b.title);
+      }
+      
+    });
+  
+    return sortedYearTitle; // Devolvemos el array de películas ordenadas
+  }
+  
+  
 
 // Exercise 6: Calculate the average of the movies in a category
-function moviesAverageByCategory() {}
+function moviesAverageByCategory() { }
 
 // Exercise 7: Modify the duration of movies to minutes
-function hoursToMinutes() {}
+function hoursToMinutes() { }
 
 // Exercise 8: Get the best film of a year
-function bestFilmOfYear() {}
+function bestFilmOfYear() { }
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
