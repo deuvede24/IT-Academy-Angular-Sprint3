@@ -33,32 +33,51 @@ function moviesAverageOfDirector(array, director) {
 function orderAlphabetically(array) {
   const sortedMovies = array
     .map((movie) => movie.title)
-    .sort((a, b)=> a.localeCompare(b)) //LocalCompare garantiza el orden alfabéitco sensible a mayúsuclas-minúsculas y caracteres especiales.
-      .slice(0, 20); //las primeras 20
-      console.log('EXERCICE 4 ->', sortedMovies);
+    .sort((a, b) => a.localeCompare(b)) //LocalCompare garantiza el orden alfabéitco sensible a mayúsuclas-minúsculas y caracteres especiales.
+    .slice(0, 20); //las primeras 20
+  console.log('EXERCICE 4 ->', sortedMovies);
   return sortedMovies;
 }
 
 // Exercise 5: Order by year, ascending
 function orderByYear(array) {
-    // Utilizamos sort() para ordenar las películas por año y luwgo por tittle
-    const copyArray = [...array]
-    const sortedYearTitle = copyArray.sort((a, b) => {
-      if (a.year !== b.year) {  // Comparamos los años
-        return a.year - b.year; // Orden ascendente por año
-      } else {  // Si las películas tienen el mismo año, las ordenamos por tittle
-        return a.title.localeCompare(b.title);
-      }
-      
-    });
-  
-    return sortedYearTitle; // Devolvemos el array de películas ordenadas
-  }
-  
-  
+  // Utilizamos sort() para ordenar las películas por año y luwgo por tittle
+  const copyArray = [...array]
+  const sortedYearTitle = copyArray.sort((a, b) => {
+    if (a.year !== b.year) {  // Comparamos los años
+      return a.year - b.year; // Orden ascendente por año
+    } else {  // Si las películas tienen el mismo año, las ordenamos por tittle
+      return a.title.localeCompare(b.title);
+    }
+
+  });
+
+  return sortedYearTitle; // Devolvemos el array de películas ordenadas
+}
+
+
 
 // Exercise 6: Calculate the average of the movies in a category
-function moviesAverageByCategory() { }
+
+function moviesAverageByCategory(array, genre) {
+  // Filtrar movies por genre
+  const genreMovies = array.filter(movie => movie.genre.includes(genre));
+
+  // Si no hay películas del género, retornar NaN
+  if (genreMovies.length === 0) {
+    return NaN;
+  }
+
+  // Calcular total score de este genre
+  const totalScore = parseFloats(genreMovies.reduce((total, movie) => total + movie.score, 0));
+
+  // Calcular el resultado average y redondear con dos decimales
+  const result = (totalScore / genreMovies.length).toFixed(2);
+
+  // Convertir de nuevo a número antes de retornar
+  return parseFloat(result);
+}
+
 
 // Exercise 7: Modify the duration of movies to minutes
 function hoursToMinutes() { }
